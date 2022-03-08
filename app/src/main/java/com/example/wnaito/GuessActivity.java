@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class GuessActivity extends AppCompatActivity {
-    public static int correctGuesses;
+import org.w3c.dom.Text;
 
+public class GuessActivity extends AppCompatActivity {
+    public static int correctGuesses = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,17 +20,14 @@ public class GuessActivity extends AppCompatActivity {
 
     public void confirmGuess(View view) {
         EditText input = (EditText) findViewById(R.id.guessInput);
-        int guessNumber = (int) Double.parseDouble(input.getText().toString());
+        int guessNumber = Integer.parseInt((input.getText().toString()));
 
-        for (int i = 0; i < 10; i++){
-            int correctGuess = (int) Math.round(Math.random() * (NumberActivity.x - 1) + 1);
-            System.out.println(correctGuess);
-        }
-
-        if (guessNumber == 10) {
-            TextView selvi = (TextView) findViewById(R.id.textView4);
-            selvi.setText("Nice one!");
+        if (guessNumber == NumberActivity.correctGuess) {
+            TextView text = (TextView) findViewById(R.id.textView4);
             correctGuesses++;
+
+            String msg1 = "Nice one, you guessed correctly " + correctGuesses + "  x. Now Guess Again!";
+            text.setText(msg1);
         }
         else {
             Intent intent = new Intent(GuessActivity.this, FinalActivity.class);

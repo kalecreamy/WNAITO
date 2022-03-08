@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WNAITO</string>
+    <string name="won_game">You guessed correctly at least once.</string>
+    <string name="lost_game">You lost, you never guessed correctly.</string>
 </resources>
